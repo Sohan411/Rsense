@@ -536,7 +536,9 @@ function avg_interval(req,res){
 function getDataByCustomDate(req, res) {
   try {
     const deviceId = req.params.deviceId;
-    const {startDate,endDate} = req.body;
+    const startDate = req.query.start;
+    const endDate = req.query.end;
+
     // const endDate = req.body;
 
     if (!startDate || !endDate) {
@@ -1303,10 +1305,12 @@ function getTotalVolumeForDuration(req, res) {
 
   try {
 
+    let duration2;
     let duration;
     switch (interval) {
       case '30sec':
         duration = 'INTERVAL 1 DAY';
+        duration2 = '12:00:0000';
         break;
       case '1min':
         duration = 'INTERVAL 1 DAY';
